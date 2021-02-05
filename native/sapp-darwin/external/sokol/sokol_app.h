@@ -3309,7 +3309,6 @@ _SOKOL_PRIVATE void _sapp_macos_frame(void) {
             _sapp_init_event(SAPP_EVENTTYPE_RAW_DEVICE);
             _sapp_call_event(&_sapp.event);
         }
-        
         _sapp_macos_mouse_event(SAPP_EVENTTYPE_MOUSE_MOVE, SAPP_MOUSEBUTTON_MIDDLE, _sapp_macos_mod(event.modifierFlags));
     }
 }
@@ -3320,7 +3319,6 @@ _SOKOL_PRIVATE void _sapp_macos_frame(void) {
         _sapp_init_event(SAPP_EVENTTYPE_RAW_DEVICE);
         _sapp_call_event(&_sapp.event);
     }
-        
     _sapp_macos_mouse_event(SAPP_EVENTTYPE_MOUSE_MOVE, SAPP_MOUSEBUTTON_INVALID , _sapp_macos_mod(event.modifierFlags));
 }
 - (void)mouseDragged:(NSEvent*)event {
@@ -3330,7 +3328,6 @@ _SOKOL_PRIVATE void _sapp_macos_frame(void) {
         _sapp_init_event(SAPP_EVENTTYPE_RAW_DEVICE);
         _sapp_call_event(&_sapp.event);
     }
-        
     _sapp_macos_mouse_event(SAPP_EVENTTYPE_MOUSE_MOVE, SAPP_MOUSEBUTTON_INVALID , _sapp_macos_mod(event.modifierFlags));
 }
 - (void)rightMouseDragged:(NSEvent*)event {
@@ -3340,7 +3337,6 @@ _SOKOL_PRIVATE void _sapp_macos_frame(void) {
         _sapp_init_event(SAPP_EVENTTYPE_RAW_DEVICE);
         _sapp_call_event(&_sapp.event);
     }
-        
     _sapp_macos_mouse_event(SAPP_EVENTTYPE_MOUSE_MOVE, SAPP_MOUSEBUTTON_INVALID, _sapp_macos_mod(event.modifierFlags));
 }
 - (void)scrollWheel:(NSEvent*)event {
