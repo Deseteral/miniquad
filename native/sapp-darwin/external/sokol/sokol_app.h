@@ -2948,12 +2948,12 @@ _SOKOL_PRIVATE void _sapp_macos_lock_mouse(bool lock) {
         stack with calls to sapp_show_mouse()
     */
     if (_sapp.mouse.locked) {
+        NSRect screen_rect = NSScreen.mainScreen.frame;
+        CGWarpMouseCursorPosition(CGPointMake(screen_rect.origin.x, screen_rect.origin.y));
+
         [NSEvent setMouseCoalescingEnabled:NO];
         CGAssociateMouseAndMouseCursorPosition(NO);
         CGDisplayHideCursor(kCGDirectMainDisplay);
-        
-        NSRect screen_rect = NSScreen.mainScreen.frame;
-        CGWarpMouseCursorPosition(CGPointMake(screen_rect.origin.x, screen_rect.origin.y));
     }
     else {
         CGDisplayShowCursor(kCGDirectMainDisplay);
