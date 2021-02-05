@@ -2930,6 +2930,13 @@ _SOKOL_PRIVATE void _sapp_macos_show_mouse(bool visible) {
     }
 }
 
+_SOKOL_PRIVATE void _sapp_macos_move_mouse_inside_window(void) {
+    NSArray *orderedWindows = [NSApp orderedWindows];
+    NSWindow *frontWindow = orderedWindows[0];
+    
+    CGWarpMouseCursorPosition(CGPointMake(frontWindow.frame.origin.x, frontWindow.frame.origin.y));
+}
+
 _SOKOL_PRIVATE void _sapp_macos_lock_mouse(bool lock) {
     if (lock == _sapp.mouse.locked) {
         return;
@@ -2948,6 +2955,7 @@ _SOKOL_PRIVATE void _sapp_macos_lock_mouse(bool lock) {
         stack with calls to sapp_show_mouse()
     */
     if (_sapp.mouse.locked) {
+        _sapp_macos_move_mouse_inside_window();
         [NSEvent setMouseCoalescingEnabled:NO];
         CGAssociateMouseAndMouseCursorPosition(NO);
         CGDisplayHideCursor(kCGDirectMainDisplay);
@@ -3118,10 +3126,7 @@ _SOKOL_PRIVATE void _sapp_macos_frame(void) {
 
 - (void)windowDidBecomeMain:(NSNotification*)notification {
     if (_sapp.mouse.locked) {
-        NSArray *orderedWindows = [NSApp orderedWindows];
-        NSWindow *frontWindow = orderedWindows[0];
-        
-        CGWarpMouseCursorPosition(CGPointMake(frontWindow.frame.origin.x, frontWindow.frame.origin.y));
+        _sapp_macos_move_mouse_inside_window();
     }
 }
 
