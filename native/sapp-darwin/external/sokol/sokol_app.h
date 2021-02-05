@@ -3118,8 +3118,10 @@ _SOKOL_PRIVATE void _sapp_macos_frame(void) {
 
 - (void)windowDidBecomeMain:(NSNotification*)notification {
     if (_sapp.mouse.locked) {
-        NSRect screen_rect = NSScreen.mainScreen.frame;
-        CGWarpMouseCursorPosition(CGPointMake(screen_rect.origin.x, screen_rect.origin.y));
+        NSArray *orderedWindows = [NSApp orderedWindows];
+        NSWindow *frontWindow = orderedWindows[0];
+        
+        CGWarpMouseCursorPosition(CGPointMake(frontWindow.frame.origin.x, frontWindow.frame.origin.y));
     }
 }
 
