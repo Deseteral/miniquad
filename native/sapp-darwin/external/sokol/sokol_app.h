@@ -2934,7 +2934,10 @@ _SOKOL_PRIVATE void _sapp_macos_move_mouse_inside_window(void) {
     NSArray *orderedWindows = [NSApp orderedWindows];
     NSWindow *frontWindow = orderedWindows[0];
     
-    CGWarpMouseCursorPosition(CGPointMake(frontWindow.frame.origin.x + 10, frontWindow.frame.origin.y + 10));
+    CGWarpMouseCursorPosition(CGPointMake(
+        frontWindow.frame.origin.x + (_sapp.window_width / 2), 
+        frontWindow.frame.origin.y + (_sapp.window_height / 2)
+    ));
 }
 
 _SOKOL_PRIVATE void _sapp_macos_lock_mouse(bool lock) {
